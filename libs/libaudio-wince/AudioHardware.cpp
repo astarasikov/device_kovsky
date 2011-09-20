@@ -770,10 +770,11 @@ status_t AudioHardware::doAcousticAudioDeviceChange(struct msm_snd_device_config
         }
     } else {
         inputDevice = input->devices();
-        if ( (inputDevice & AudioSystem::DEVICE_IN_BUILTIN_MIC) ||
-             (inputDevice & AudioSystem::DEVICE_IN_BACK_MIC) ) {
+        if (inputDevice & AudioSystem::DEVICE_IN_ALL) {
+			LOGI("enabling mic recording");
             args->mic_mute = false;  
         } else {
+			LOGI("disabling mic recording");
             args->mic_mute = true;
         }
     }
