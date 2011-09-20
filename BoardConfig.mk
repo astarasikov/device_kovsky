@@ -17,10 +17,12 @@
 # Product-specific compile-time definitions.
 #
 
+# Camera
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
+BOARD_USE_FROYO_LIBCAMERA := true
 
 # inherit from the proprietary version
 -include vendor/htc/kovsky/BoardConfigVendor.mk
@@ -64,8 +66,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 # OpenGL drivers config file path
 BOARD_EGL_CFG := device/htc/kovsky/egl.cfg
-
-BOARD_USE_FROYO_LIBCAMERA := false
 
 # RPC
 BOARD_USES_QCOM_LIBRPC := false
