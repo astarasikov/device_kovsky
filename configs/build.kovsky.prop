@@ -1,0 +1,7 @@
+ro.product.model=Xperia X1
+ro.product.brand=sonyericsson
+ro.product.name=kovsky
+ro.product.device=kovsky
+ro.product.board=kovsky
+# ro.build.product is obsolete; use ro.product.device
+ro.build.product=kovsky
