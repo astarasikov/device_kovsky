@@ -37,7 +37,7 @@ TARGET_NO_RADIOIMAGE := true
 BOARD_HAS_FLIPPED_SCREEN := true
 
 # Audio
-TARGET_PROVIDES_LIBAUDIO := device/htc/kovsky/libs/libaudio
+TARGET_PROVIDES_LIBAUDIO := device/htc/kovsky/libs/libaudio-wince
 BUILD_LIB_HTC_ACOUSTIC_WINCE := true
 
 # Wifi related defines
@@ -50,8 +50,8 @@ BOARD_HAVE_BLUETOOTH := true
 
 # Kernel options
 BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_CMDLINE := fbcon=rotate:2
-TARGET_PREBUILT_KERNEL := device/htc/kovsky/kernel
+BOARD_KERNEL_CMDLINE := fbcon=rotate:2 smd_rpcrouter.hot_boot=1 no_console_suspend=1
+TARGET_PREBUILT_KERNEL := device/htc/kovsky/prebuilt_kernel/kernel
 LOCAL_KERNEL := device/htc/kovsky/kernel
 
 #libsurfaceflinger to avoid Draw Texture Extenstion
@@ -95,8 +95,8 @@ JS_ENGINE := v8
 # mtd3: 05a00000 00020000 "system"
 # mtd4: 05000000 00020000 "cache"
 # mtd5: 127c0000 00020000 "userdata"
-BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00280000
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00500000
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x0aa00000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x127c0000
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00a00000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00a00000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x07200000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x14000000
 
