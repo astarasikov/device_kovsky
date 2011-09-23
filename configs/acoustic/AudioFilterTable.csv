@@ -1,0 +1,12 @@
+Header,Mode,Band Ncoeff1,Band NCoeff2,Band NCoeff3,Band NCoeff4,Band NCoeff5,Band NCoeff6,Band NCoeff7,Band NCoeff8,Band NCoeff9,Band NCoeff10,Band NCoeff11,Band NCoeff12,Band NCoeff13,Band NCoeff14,Band NCoeff15,Band NCoeff16,Band NCoeff17,Band NCoeff18,Band NCoeff19,Band NCoeff20,Band NCoeff21,Band NCoeff22,Band NCoeff23,Band NCoeff24,Band MCoeff1,Band MCoeff2,Band MCoeff3,Band MCoeff4,Band MCoeff5,Band MCoeff6,Band MCoeff7,Band MCoeff8,Band MCoeff9,Band MCoeff10,Band MCoeff11,Band MCoeff12,Band MCoeff13,Band MCoeff14,Band MCoeff15,Band MCoeff16,SF1,SF2,SF3,SF4,CS1,CS2,CS3,CS4,enable,Number of Band
+A1,AUDFMT IIR,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0000,0002,0002,0002,0002,0000,0000,0000,0000,0000,0004
+Header,Mode,Enable,compress threshold,compress slope,RMS,Attack const1,Attack const2,release const1,release const2,system delay,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+B1,AUDFMT ADRC,0,3000,b333,86,7000,3096,6ff7,4356,16,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Header,Mode,Enable,BAND1 gain,BAND1 freq,BAND1 type,BAND1 qf,BAND2 gain,BAND2 freq,BAND2 type,BAND2 qf,BAND3 gain,BAND3 freq,BAND3 type,BAND3 qf,BAND4 gain,BAND4 freq,BAND4 type,BAND4 qf,BAND5 gain,BAND5 freq,BAND5 type,BAND5 qf,BAND6 gain,BAND6 freq,BAND6 type,BAND6 qf,BAND7 gain,BAND7 freq,BAND7 type,BAND7 qf,BAND8 gain,BAND8freq,BAND8 type,BAND8 qf,,,,,,,,,,,,,,,,,
+C1,AUDFMT EQ,FFFF,2,3C,3,016A,2,96,3,016A,1,12C,3,016A,0,2EE,3,016A,0,5DC,3,016A,FFFE,DAC,3,016A,FFFD,1B58,3,016A,FFFC,3A98,3,016A,,,,,,,,,,,,,,,,,
+Header,Mode,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+D1,AUDPRE IIR,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Header,Mode,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+E1,AUDPRE AGC,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Header,Mode,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+F1,AUDPRE NS,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

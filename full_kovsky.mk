@@ -59,6 +59,12 @@ PRODUCT_COPY_FILES += \
     device/htc/kovsky/configs/keylayout/microp-keypad.kl:system/usr/keylayout/microp-keypad.kl \
     device/htc/kovsky/configs/keylayout/3.5mm_headset.kl:system/usr/keylayout/3.5mm_headset.kl
 
+# Acoustic (Sound processor) settings
+PRODUCT_COPY_FILES += \
+    device/htc/kovsky/configs/acoustic/AudioFilterTable.csv:system/etc/AudioFilterTable.csv \
+    device/htc/kovsky/configs/acoustic/AudioPara3.csv:system/etc/AudioPara3.csv \
+    device/htc/kovsky/configs/acoustic/AudioPreProcessTable.csv:system/etc/AudioPreProcessTable.csv
+
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
     ro.ril.hsxpa=2 \

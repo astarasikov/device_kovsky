@@ -57,15 +57,15 @@ on boot
     chmod 0777 /dev/smd27
 
 	# devices permissions
-    chmod 666 /dev/msm_snd
-    chmod 666 /dev/msm_pcm_in
-    chmod 666 /dev/msm_audpre
-    chmod 666 /dev/msm_mp3
-    chmod 666 /dev/msm_pcm_out
-    chmod 666 /dev/msm_pcm_ctl
-    chmod 666 /dev/msm_hw3dm
-    chmod 666 /dev/msm_hw3dc
-    chmod 666 /dev/htc_acoustic_wince
+    chmod 777 /dev/msm_snd
+    chmod 777 /dev/msm_pcm_in
+    chmod 777 /dev/msm_audpre
+    chmod 777 /dev/msm_mp3
+    chmod 777 /dev/msm_pcm_out
+    chmod 777 /dev/msm_pcm_ctl
+    chmod 777 /dev/msm_hw3dm
+    chmod 777 /dev/msm_hw3dc
+    chmod 777 /dev/htc_acoustic_wince
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -q
