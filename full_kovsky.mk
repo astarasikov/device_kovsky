@@ -120,9 +120,7 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 PRODUCT_COPY_FILES += \
-	$(LOCAL_KERNEL):kernel \
-	device/htc/kovsky/prebuilt_kernel/wl1251.ko:/system/lib/modules/wl1251.ko \
-	device/htc/kovsky/prebuilt_kernel/wl1251_sdio.ko:/system/lib/modules/wl1251_sdio.ko
+	$(LOCAL_KERNEL):kernel
 
 ## (2) Also get non-open-source aspects if available
 $(call inherit-product-if-exists, vendor/htc/kovsky/kovsky-vendor.mk)
