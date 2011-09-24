@@ -50,7 +50,7 @@ BOARD_HAVE_BLUETOOTH := true
 
 # Kernel options
 BOARD_KERNEL_BASE := 0x10000000
-BOARD_KERNEL_CMDLINE := fbcon=rotate:2 smd_rpcrouter.hot_boot=1 no_console_suspend=1
+BOARD_KERNEL_CMDLINE := fbcon=rotate:2 smd_rpcrouter.hot_boot=1 no_console_suspend=1 mmc_core.removable=1
 TARGET_PREBUILT_KERNEL := device/htc/kovsky/prebuilt_kernel/kernel
 LOCAL_KERNEL := device/htc/kovsky/kernel
 
