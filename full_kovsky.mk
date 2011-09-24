@@ -39,6 +39,8 @@ PRODUCT_PACKAGES += \
 	wl1251.ko \
 	wl1251_sdio.ko
 
+PRODUCT_COPY_FILES ?= 
+
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -52,7 +54,12 @@ PRODUCT_COPY_FILES += \
     device/htc/kovsky/configs/init.kovsky.rc:root/init.kovsky.rc \
     device/htc/kovsky/configs/build.kovsky.prop:system/build.kovsky.prop \
     device/htc/kovsky/configs/ueventd.kovsky.rc:root/ueventd.kovsky.rc \
-    device/htc/kovsky/configs/vold.fstab:system/etc/vold.fstab
+    device/htc/kovsky/configs/vold.fstab:system/etc/vold.fstab \
+    device/htc/kovsky/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+
+# Some init scripts
+PRODUCT_COPY_FILES += \
+    device/htc/kovsky/configs/init/01kovsky:/system/etc/init.d/01kovsky
 
 # Keylayout / Headset
 PRODUCT_COPY_FILES += \
