@@ -72,6 +72,7 @@ BOARD_USES_QCOM_LIBRPC := false
 
 # GPS
 BOARD_VENDOR_XDANDROID_GPS_HARDWARE := true
+BOARD_GPS_LIBRARIES := gps.xdandroid
 
 # Ota updates
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
