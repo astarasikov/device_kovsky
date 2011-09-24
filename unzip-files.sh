@@ -21,7 +21,9 @@ DEVICE=kovsky
 mkdir -p ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/01_qcomm_omx.cfg -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/brf6300.bin -d ../../../vendor/htc/$DEVICE/proprietary
-unzip -j -o ../../../${DEVICE}_update.zip system/etc/wifi/Fw1251r1c.bin -d ../../../vendor/htc/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/brf6350.bin -d ../../../vendor/htc/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/wl1251-fw.bin -d ../../../vendor/htc/$DEVICE/proprietary
+unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/wl1251-nvs.bin -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLES_qcom.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/libaudioeq.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/liblvmxipc.so -d ../../../vendor/htc/$DEVICE/proprietary
@@ -51,10 +53,11 @@ unzip -j -o ../../../${DEVICE}_update.zip system/lib/libqcomm_omx.so -d ../../..
 
 # All the blobs necessary for sapphire
 PRODUCT_COPY_FILES := \\
-    vendor/htc/__DEVICE__/proprietary/akmd:system/bin/akmd \\
     vendor/htc/__DEVICE__/proprietary/01_qcomm_omx.cfg:system/etc/01_qcomm_omx.cfg \\
     vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/brf6300.bin \\
-    vendor/htc/__DEVICE__/proprietary/Fw1251r1c.bin:system/etc/firmware/wl1251-fw.bin \\
+    vendor/htc/__DEVICE__/proprietary/brf6350.bin:system/etc/firmware/brf6350.bin \\
+    vendor/htc/__DEVICE__/proprietary/wl1251-fw.bin:system/etc/firmware/wl1251-fw.bin \\
+    vendor/htc/__DEVICE__/proprietary/wl1251-nvs.bin:system/etc/firmware/wl1251-nvs.bin \\
     vendor/htc/__DEVICE__/proprietary/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioeq.so:system/lib/libaudioeq.so \\
     vendor/htc/__DEVICE__/proprietary/liblvmxipc.so:system/lib/liblvmxipc.so \\

@@ -20,7 +20,9 @@ DEVICE=kovsky
 
 mkdir -p ../../../vendor/htc/$DEVICE/proprietary
 adb pull /system/etc/firmware/brf6300.bin ../../../vendor/htc/$DEVICE/proprietary/brf6300.bin
-adb pull /system/etc/wifi/Fw1251r1c.bin ../../../vendor/htc/$DEVICE/proprietary/Fw1251r1c.bin
+adb pull /system/etc/firmware/brf6350.bin ../../../vendor/htc/$DEVICE/proprietary/brf6350.bin
+adb pull /system/etc/firmware/wl1251-fw.bin ../../../vendor/htc/$DEVICE/proprietary/wl1251-fw.bin
+adb pull /system/etc/firmware/wl1251-nvs.bin ../../../vendor/htc/$DEVICE/proprietary/wl1251-nvs.bin
 adb pull /system/lib/egl/libGLES_qcom.so ../../../vendor/htc/$DEVICE/proprietary/libGLES_qcom.so
 adb pull /system/lib/libaudioeq.so ../../../vendor/htc/$DEVICE/proprietary/libaudioeq.so
 adb pull /system/lib/libmm-adspsvc.so ../../../vendor/htc/$DEVICE/proprietary/libmm-adspsvc.so
@@ -49,7 +51,9 @@ adb pull /system/lib/libOmxVidEnc.so ../../../vendor/htc/$DEVICE/proprietary/lib
 # All the blobs necessary for kovsky
 PRODUCT_COPY_FILES += \\
     vendor/htc/__DEVICE__/proprietary/brf6300.bin:system/etc/firmware/brf6300.bin \\
-    vendor/htc/__DEVICE__/proprietary/Fw1251r1c.bin:system/etc/firmware/wl1251-fw.bin \\
+    vendor/htc/__DEVICE__/proprietary/brf6350.bin:system/etc/firmware/brf6350.bin \\
+    vendor/htc/__DEVICE__/proprietary/wl1251-fw.bin:system/etc/firmware/wl1251-fw.bin \\
+    vendor/htc/__DEVICE__/proprietary/wl1251-nvs.bin:system/etc/firmware/wl1251-nvs.bin \\
     vendor/htc/__DEVICE__/proprietary/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioeq.so:system/lib/libaudioeq.so \\
     vendor/htc/__DEVICE__/proprietary/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \\
