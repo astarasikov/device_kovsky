@@ -3,11 +3,6 @@
 #some hacks to make the device more or less usable until
 #it is implemented properly
 
-chmod 777 /dev/*
-chmod 777 /sys/class/leds/red/brightness
-chmod 777 -R /sys/class/leds
-chmod 777 -R /sys/class/rfkill/
-
 if [ -d /system/lib/modules ] ;then
 	for i in /system/lib/modules/*.ko
 	do insmod $i
@@ -17,4 +12,5 @@ fi
 # we need to force the wl1251 driver to disable transmitter power
 busybox ifconfig wlan0 up
 busybox ifconfig wlan0 down
-
+echo 0 > /sys/class/rfkill/rfkill0/state
+echo 0 > /sys/class/rfkill/rfkill1/state
