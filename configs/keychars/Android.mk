@@ -15,12 +15,7 @@
 LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SRC_FILES := h2w_headset.kcm
-LOCAL_MODULE_TAGS := optional
-include $(BUILD_KEY_CHAR_MAP)
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := microp_keypad.kcm
+LOCAL_SRC_FILES := microp-keypad.kcm
 LOCAL_MODULE_TAGS := optional
 include $(BUILD_KEY_CHAR_MAP)
 
