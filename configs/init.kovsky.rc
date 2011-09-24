@@ -40,6 +40,18 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
+	
+	# LEDs
+	chown system system /sys/class/leds/red/brightness
+	chown system system /sys/class/leds/red/blink
+	chown system system /sys/class/leds/green/brightness
+	chown system system /sys/class/leds/green/blink
+	chown system system /sys/class/leds/blue/brightness
+	chown system system /sys/class/leds/blue/blink
+	
+	chown system system /sys/class/leds/lcd-backlight/brightness
+	chown system system /sys/class/leds/keyboard-backlight/brightness
+	chown system system /sys/class/leds/button-backlight/brightness
 
     # cpufreq configurations
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 245760
@@ -57,15 +69,20 @@ on boot
     chmod 0777 /dev/smd27
 
 	# devices permissions
-    chmod 777 /dev/msm_snd
-    chmod 777 /dev/msm_pcm_in
-    chmod 777 /dev/msm_audpre
-    chmod 777 /dev/msm_mp3
-    chmod 777 /dev/msm_pcm_out
-    chmod 777 /dev/msm_pcm_ctl
-    chmod 777 /dev/msm_hw3dm
-    chmod 777 /dev/msm_hw3dc
-    chmod 777 /dev/htc_acoustic_wince
+    chmod 0777 /dev/msm_snd
+    chmod 0777 /dev/msm_pcm_in
+    chmod 0777 /dev/msm_audpre
+    chmod 0777 /dev/msm_mp3
+    chmod 0777 /dev/msm_pcm_out
+    chmod 0777 /dev/msm_pcm_ctl
+    chmod 0777 /dev/msm_hw3dm
+    chmod 0777 /dev/msm_hw3dc
+    chmod 0777 /dev/htc_acoustic_wince
+
+    # performance tweaks for flash
+    write /sys/block/mtdblock3/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock4/bdi/read_ahead_kb 4
+    write /sys/block/mtdblock5/bdi/read_ahead_kb 4
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -q
