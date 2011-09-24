@@ -1,0 +1,19 @@
+#!/system/bin/sh
+
+#some hacks to make the device more or less usable until
+#it is implemented properly
+
+chmod 777 /dev/*
+chmod 777 /sys/class/leds/red/brightness
+chmod 777 -R /sys/class/leds
+chmod 777 -R /sys/class/rfkill/
+
+if [ -d /system/lib/modules ] ;then
+	for i in /system/lib/modules/*.ko
+	do insmod $i
+	done
+fi
+
+#save some power
+busybox ifconfig wlan0 down
+
