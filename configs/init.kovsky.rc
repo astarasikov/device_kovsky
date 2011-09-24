@@ -41,7 +41,11 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
 	chown bluetooth bluetooth /dev/ttyHS1
-    chmod 0666                /dev/ttyHS1
+    chmod 0660                /dev/ttyHS1
+    
+	chown wifi wifi /sys/class/rfkill/rfkill1/type
+    chown wifi wifi /sys/class/rfkill/rfkill1/state
+    chmod 0660 /sys/class/rfkill/rfkill1/state
 	
 	# LEDs and stuff
 	chown system system /sys/class/timed_output/vibrator/enable
