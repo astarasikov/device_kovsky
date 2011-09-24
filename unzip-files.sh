@@ -26,7 +26,6 @@ unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/wl1251-fw.bin -d .
 unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/wl1251-nvs.bin -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLES_qcom.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/libaudioeq.so -d ../../../vendor/htc/$DEVICE/proprietary
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/liblvmxipc.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/libmm-adspsvc.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/liboemcamera.so -d ../../../vendor/htc/$DEVICE/proprietary
 unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxH264Dec.so -d ../../../vendor/htc/$DEVICE/proprietary
@@ -60,7 +59,6 @@ PRODUCT_COPY_FILES := \\
     vendor/htc/__DEVICE__/proprietary/wl1251-nvs.bin:system/etc/firmware/wl1251-nvs.bin \\
     vendor/htc/__DEVICE__/proprietary/libGLES_qcom.so:system/lib/egl/libGLES_qcom.so \\
     vendor/htc/__DEVICE__/proprietary/libaudioeq.so:system/lib/libaudioeq.so \\
-    vendor/htc/__DEVICE__/proprietary/liblvmxipc.so:system/lib/liblvmxipc.so \\
     vendor/htc/__DEVICE__/proprietary/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \\
     vendor/htc/__DEVICE__/proprietary/liboemcamera.so:system/lib/liboemcamera.so \\
     vendor/htc/__DEVICE__/proprietary/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \\
