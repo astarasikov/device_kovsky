@@ -1,16 +1,16 @@
 /*
 ** Copyright 2008, Google Inc.
 **
-** Licensed under the Apache License, Version 2.0 (the "License");
-** you may not use this file except in compliance with the License.
-** You may obtain a copy of the License at
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
 **
-**     http://www.apache.org/licenses/LICENSE-2.0
+**     http://www.apache.org/licenses/LICENSE-2.0 
 **
-** Unless required by applicable law or agreed to in writing, software
-** distributed under the License is distributed on an "AS IS" BASIS,
-** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-** See the License for the specific language governing permissions and
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
 ** limitations under the License.
 */
 
@@ -25,34 +25,88 @@
 
 extern "C" {
 #include <linux/android_pmem.h>
-#include "msm_camera.h"
+#include <media/msm_camera.h>
 }
 
 #define MSM_CAMERA_CONTROL "/dev/msm_camera/control0"
 #define JPEG_EVENT_DONE 0 /* guess */
 
+#define TRUE 1
+#define FALSE 0
+
 #define CAM_CTRL_SUCCESS 1
 
-#define REVISION_H "4"
+/* TAG JB 01/20/2010 : From the disassembly of both drem/sapphire + legend camera libraries */
+#define CAMERA_SET_PARM_DIMENSION           1
+#define CAMERA_SET_PARM_ZOOM                2
+#define CAMERA_SET_PARM_SENSOR_POSITION     3   // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FOCUS_RECT          4   // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_LUMA_ADAPTATION     5   // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_CONTRAST            6
+#define CAMERA_SET_PARM_BRIGHTNESS          7
+#define CAMERA_SET_PARM_EXPOSURE_COMPENSATION   8   // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_SHARPNESS           9   // (4) from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_HUE                 10  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_SATURATION          11
+#define CAMERA_SET_PARM_EXPOSURE            12
+#define CAMERA_SET_PARM_AUTO_FOCUS          13
+#define CAMERA_SET_PARM_WB                  14
+#define CAMERA_SET_PARM_EFFECT              15
+#define CAMERA_SET_PARM_FPS                 16  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FLASH               17  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_NIGHTSHOT_MODE      18  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_REFLECT             19  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_PREVIEW_MODE        20  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_ANTIBANDING         21
+#define CAMERA_SET_PARM_RED_EYE_REDUCTION   22  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FOCUS_STEP          23  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_EXPOSURE_METERING   24  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_AUTO_EXPOSURE_MODE  25  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_ISO                 26
+#define CAMERA_SET_PARM_BESTSHOT_MODE       27  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_PREVIEW_FPS         29  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_AF_MODE             30  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_HISTOGRAM           31  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FLASH_STATE         32  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FRAME_TIMESTAMP     33  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_STROBE_FLASH        34  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_FPS_LIST            35  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_HJR                 36
+#define CAMERA_SET_PARM_ROLLOFF             37
+#define CAMERA_STOP_PREVIEW                 38
+#define CAMERA_START_PREVIEW                39
+#define CAMERA_START_SNAPSHOT               40
+#define CAMERA_START_RAW_SNAPSHOT           41
+#define CAMERA_STOP_SNAPSHOT                42
+#define CAMERA_EXIT                         43
+#define CAMERA_GET_PARM_ZOOM                46  // from liboemcamera.so (307Kb version) disassembly
+#define CAMERA_GET_PARM_MAXZOOM             47
+#define CAMERA_GET_PARM_AF_SHARPNESS        48  // from liboemcamera.so disassembly
+#define CAMERA_SET_PARM_LED_MODE            49
+#define CAMERA_SET_MOTION_ISO               50  // from liboemcamera.so disassembly
+#define CAMERA_AUTO_FOCUS_CANCEL            51  // (38) from liboemcamera.so disassembly
+#define CAMERA_GET_PARM_FOCUS_STEP          52  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_ENABLE_AFD                   53  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_PREPARE_SNAPSHOT             54
+#define CAMERA_SET_PARM_COORDINATE          55  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_SET_AWB_CALIBRATION          56  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_SET_PARM_LA_MODE             57  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_SET_PARM_AE_COORDINATE       58  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_GET_PARM_FOCAL_LENGTH        59  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_GET_PARM_HORIZONTAL_VIEW_ANGLE 60  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_GET_PARM_VERTICAL_VIEW_ANGLE 61  // from liboemcamera.so (1535Kb version) disassembly
+#define CAMERA_GET_PARM_ISO                 62
+#define CAMERA_SET_PARM_FRONT_CAMERA_MODE   63  // from liboemcamera.so (1535Kb version) disassembly
 
-#define CAMERA_SET_PARM_DIMENSION 1
-#define CAMERA_SET_PARM_ZOOM 2
-#define CAMERA_GET_PARM_MAXZOOM 47
-#define CAMERA_SET_PARM_WB 14
-#define CAMERA_SET_PARM_EFFECT 15
-#define CAMERA_SET_PARM_ANTIBANDING 21
-#define CAMERA_STOP_PREVIEW 38
-#define CAMERA_START_PREVIEW 39
-#define CAMERA_EXIT 43
-
-#define CAMERA_SET_PARM_AUTO_FOCUS 13
-#define CAMERA_START_SNAPSHOT 40
-#define CAMERA_STOP_SNAPSHOT 42
-
-#define AF_MODE_AUTO 2
-#define CAMERA_AUTO_FOCUS_CANCEL 1 //204
+#define CAMERA_START_VIDEO                  56
+#define CAMERA_STOP_VIDEO                   57
+#define CAMERA_START_RECORDING              58
+#define CAMERA_STOP_RECORDING               59
+/* End of TAG */
 
 #define PAD_TO_WORD(x) ((x&1) ? x+1 : x)
+#define AF_MODE_AUTO 2
+//#define CAMERA_AUTO_FOCUS_CANCEL 1 //204
 
 typedef enum
 {
@@ -96,44 +150,117 @@ typedef enum
     CAMERA_MAX_ANTIBANDING,
 } camera_antibanding_type;
 
-//typedef struct
-//{
-//    uint32_t timestamp;  /* seconds since 1/6/1980          */
-//    double   latitude;   /* degrees, WGS ellipsoid */
-//    double   longitude;  /* degrees                */
-//    int16_t  altitude;   /* meters                          */
-//} camera_position_type;
+typedef enum
+{
+	LED_MODE_OFF,
+	LED_MODE_ON,
+	LED_MODE_AUTO,
+} flash_led_type;
 
 typedef struct
 {
-    unsigned int in1_w;
+    uint32_t timestamp;  /* seconds since 1/6/1980          */
+    double   latitude;   /* degrees, WGS ellipsoid */
+    double   longitude;  /* degrees                */
+    int16_t  altitude;   /* meters                          */
+} camera_position_type;
+
+typedef struct
+{
     unsigned int in1_h;
-    unsigned int out1_w;
     unsigned int out1_h;
-    unsigned int in2_w;
+    unsigned int in1_w;
+    unsigned int out1_w;
     unsigned int in2_h;
     unsigned int out2_w;
+    unsigned int in2_w;
     unsigned int out2_h;
-    uint8_t update_flag;
+#if 0
+	unsigned int in1_w;
+	unsigned int in1_h;
+	unsigned int out1_w;
+	unsigned int out1_h;
+	unsigned int in2_w;
+	unsigned int in2_h;
+	unsigned int out2_w;
+	unsigned int out2_h;
+#endif
+    uint8_t update_flag; 
 } common_crop_t;
 
+/* TAG JB 01/20/2010 : Dual library support */
+typedef unsigned int exif_tag_id_t;
+enum {
+	EXIFTAGID_GPS_LATITUDE	= 0x20002,
+	EXIFTAGID_GPS_LONGITUDE	= 0x40004,
+};
+#define EXIF_RATIONAL 5
+#define EXIF_ASCII 2
+#define EXIF_BYTE 1
+typedef unsigned int exif_tag_type_t;
+typedef struct {
+	//24 bytes = 6 ints
+	exif_tag_type_t type;
+	uint32_t count;
+	uint32_t copy;
+	uint32_t junk1;
+	uint32_t junk2;
+	uint32_t junk3;
+} exif_tag_entry_t;
+
+typedef struct {
+	exif_tag_id_t tagid;
+	exif_tag_entry_t tag_entry;
+} exif_tags_info_t;
+/* end of TAG */
+
+#define CEILING16(x) (x&0xfffffff0)
+
+typedef struct {
+	//Size: 0x20 bytes = 32 bytes = 16 short
+	unsigned short video_width;//0x2da0
+	unsigned short video_height;//0x2da2
+	unsigned short picture_width; //0x2da4
+	unsigned short picture_height;//0x2da6
+	unsigned short display_width; //0x2da8
+	unsigned short display_height; //0x2daa
+	unsigned short orig_picture_dx;  //0x2dac
+	unsigned short orig_picture_dy; //0x2dae
+	unsigned short ui_thumbnail_width; //0x2db0
+	unsigned short ui_thumbnail_height; //0x2db2
+	unsigned short thumbnail_width;  //0x2db4
+	unsigned short thumbnail_height;  //0x2db6
+	unsigned short raw_picture_height; //0x2db8
+	unsigned short raw_picture_width;  //0x2dba
+	unsigned short filler7;   ///0x2dbc
+	unsigned short filler8;   //0x2dbe
+} cam_ctrl_dimension_t;
+
+/* TAG JB 01/20/2010 : Dual library support */
 typedef struct
 {
-    unsigned short picture_width;
-    unsigned short picture_height;
-    unsigned short display_width;
-    unsigned short display_height;
-    unsigned short filler;
-    unsigned short filler2;
-    unsigned short ui_thumbnail_height;
-    unsigned short ui_thumbnail_width;
-    unsigned short filler3;
-    unsigned short filler4;
-    unsigned short filler5;
-    unsigned short filler6;
-    unsigned short filler7;
-    unsigned short filler8;
-} cam_ctrl_dimension_t;
+union {
+	unsigned short video_width;//0x2df8
+	unsigned short picture_width; //0x2df8
+};
+union {
+	unsigned short video_height;//0x2dfa
+	unsigned short picture_height;//0x2dfa
+};
+	unsigned short display_width; //0x2dfc
+	unsigned short display_height; //0x2e00
+	unsigned short orig_picture_dx;  //0x2e02
+	unsigned short orig_picture_dy; //0x2e04
+	unsigned short ui_thumbnail_width; //0x2e06
+	unsigned short ui_thumbnail_height; //0x2e08
+	unsigned short thumbnail_width;  //0x2e0a
+	unsigned short thumbnail_height;  //0x2e0c
+	unsigned short raw_picture_height; //0x2e0e
+	unsigned short raw_picture_width;  //0x2e10
+	unsigned short filler7;   ///0x2e12
+	unsigned short filler8;   //0x2e14
+} cam_ctrl_dimension_t_basic;
+/* End of TAG */
 
 typedef uint8_t cam_ctrl_type;
 typedef uint8_t jpeg_event_t;
@@ -143,59 +270,6 @@ struct str_map {
     const char *const desc;
     int val;
 };
-
-struct dstr_map {
-    const char *const desc;
-    const char *const val;
-};
-
-// ********************************************************************************************************
-typedef unsigned int exif_tag_id_t;
-
-#define EXIF_RATIONAL 5
-#define EXIF_ASCII 2
-#define EXIF_BYTE 1
-
-typedef struct {
-        int val;
-        int otherval;
-} rat_t;
-
-
-typedef union {
-        char * _ascii; /* At byte 16 relative to exif_tag_entry_t */
-        rat_t * _rats;
-        rat_t  _rat;
-        uint8_t _byte;
-} exif_tag_data_t;
-
-/* The entire exif_tag_entry_t struct must be 24 bytes in length */
-typedef unsigned int exif_tag_type_t;
-typedef struct {
-        exif_tag_type_t type;
-        uint32_t copy;
-        uint32_t count;
-        exif_tag_data_t data;
-} exif_tag_entry_t;
-
-typedef struct {
-        exif_tag_id_t tag_id;
-        exif_tag_entry_t tag_entry;
-} exif_tags_info_t;
-
-/* EXIF tag IDs */
-#define EXIFTAGID_GPS_LATITUDE 0x20002
-#define EXIFTAGID_GPS_LATITUDE_REF 0x10001
-#define EXIFTAGID_GPS_LONGITUDE 0x40004
-#define EXIFTAGID_GPS_LONGITUDE_REF 0x30003
-#define EXIFTAGID_GPS_ALTITUDE 0x60006
-#define EXIFTAGID_GPS_ALTITUDE_REF 0x50005
-#define EXIFTAGID_EXIF_CAMERA_MAKER 0x21010F
-#define EXIFTAGID_EXIF_CAMERA_MODEL 0x220110
-#define EXIFTAGID_EXIF_DATE_TIME_ORIGINAL 0x3A9003
-#define EXIFTAGID_EXIF_DATE_TIME 0x3B9004
-/* End of values originally in proprietary headers */
-// ********************************************************************************************************
 
 namespace android {
 
@@ -224,7 +298,6 @@ public:
     virtual status_t autoFocus();
     virtual status_t takePicture();
     virtual status_t cancelPicture();
-    virtual void initCameraParameters();
     virtual status_t setParameters(const CameraParameters& params);
     virtual CameraParameters getParameters() const;
     virtual status_t sendCommand(int32_t command, int32_t arg1, int32_t arg2);
@@ -234,25 +307,12 @@ public:
     static sp<CameraHardwareInterface> createInstance();
     static sp<QualcommCameraHardware> getInstance();
 
-    bool reg_unreg_buf(int camfd,
-                       int width,
-                       int height,
-                       msm_frame *frame,
-                       msm_pmem pmem_type,
-                       unsigned char unregister,
-                       unsigned char active);
-    void native_register_preview_bufs(int camfd,
-                                      void *pDim,
-                                      struct msm_frame *frame,
-                                      unsigned char active);
-    void native_unregister_preview_bufs(int camfd,
-                                        void *pDim,
-                                        struct msm_frame *frame);
-
     void receivePreviewFrame(struct msm_frame *frame);
     void receiveJpegPicture(void);
+    void jpeg_set_location();
     void receiveJpegPictureFragment(uint8_t *buf, uint32_t size);
     void notifyShutter();
+    void notifyShutter_new(common_crop_t *crop, bool mPlayShutterSoundOnly);
 
 private:
     QualcommCameraHardware();
@@ -266,9 +326,6 @@ private:
     bool native_set_parm(cam_ctrl_type type, uint16_t length, void *value);
     bool native_set_dimension(cam_ctrl_dimension_t *value);
     int getParm(const char *parm_str, const str_map *parm_map);
-    const char* getParm(const char *parm_str, const dstr_map *parm_map);
-    void setGpsParameters();
-    const char *KEY_GPS_LATITUDE;
 
     static wp<QualcommCameraHardware> singleton;
 
@@ -279,7 +336,8 @@ private:
     static const int kPreviewBufferCount = 4;
     static const int kRawBufferCount = 1;
     static const int kJpegBufferCount = 1;
-    static const int kRawFrameHeaderSize = 0;
+
+    int jpegPadding;
 
     //TODO: put the picture dimensions in the CameraParameters object;
     CameraParameters mParameters;
@@ -290,7 +348,6 @@ private:
     unsigned int frame_size;
     bool mCameraRunning;
     bool mPreviewInitialized;
-    bool mRawInitialized;
 
     // This class represents a heap which maintains several contiguous
     // buffers.  The heap may be backed by pmem (when pmem_pool contains
@@ -299,7 +356,6 @@ private:
     struct MemPool : public RefBase {
         MemPool(int buffer_size, int num_buffers,
                 int frame_size,
-                int frame_offset,
                 const char *name);
 
         virtual ~MemPool() = 0;
@@ -312,9 +368,9 @@ private:
         virtual status_t dump(int fd, const Vector<String16>& args) const;
 
         int mBufferSize;
+        int mAlignedBufferSize;
         int mNumBuffers;
         int mFrameSize;
-        int mFrameOffset;
         sp<MemoryHeapBase> mHeap;
         sp<MemoryBase> *mBuffers;
 
@@ -324,55 +380,45 @@ private:
     struct AshmemPool : public MemPool {
         AshmemPool(int buffer_size, int num_buffers,
                    int frame_size,
-                   int frame_offset,
                    const char *name);
     };
 
     struct PmemPool : public MemPool {
         PmemPool(const char *pmem_pool,
-                 int control_camera_fd,
-                 msm_pmem pmem_type,
+                 int control_camera_fd, int flags, int pmem_type,
                  int buffer_size, int num_buffers,
-                 int frame_size, int frame_offset,
-                 const char *name);
+                 int frame_size, int cbcr_offset,
+                 int yoffset, const char *name);
         virtual ~PmemPool();
         int mFd;
-        msm_pmem mPmemType;
+        int mPmemType;
+        int mCbCrOffset;
+        int myOffset;
         int mCameraControlFd;
         uint32_t mAlignedSize;
         struct pmem_region mSize;
     };
 
-    struct PreviewPmemPool : public PmemPool {
-        virtual ~PreviewPmemPool();
-        PreviewPmemPool(int control_fd,
-                        int buffer_size,
-                        int num_buffers,
-                        int frame_size,
-                        int frame_offset,
-                        const char *name);
-    };
-
-    sp<PreviewPmemPool> mPreviewHeap;
+    sp<PmemPool> mPreviewHeap;
+    sp<PmemPool> mRecordHeap;
     sp<PmemPool> mThumbnailHeap;
     sp<PmemPool> mRawHeap;
+    sp<PmemPool> mDisplayHeap;
     sp<AshmemPool> mJpegHeap;
+    sp<PmemPool> mRawSnapShotPmemHeap;
+    sp<AshmemPool> mRawSnapshotAshmemHeap;
 
-    void startCamera();
+    bool startCamera();
     bool initPreview();
     void deinitPreview();
     bool initRaw(bool initJpegHeap);
     void deinitRaw();
-
-    friend void *jpeg_encoder_thread( void *user );
-    void runJpegEncodeThread(void *data);
 
     bool mFrameThreadRunning;
     Mutex mFrameThreadWaitLock;
     Condition mFrameThreadWait;
     friend void *frame_thread(void *user);
     void runFrameThread(void *data);
-    status_t setGpsLocation(const CameraParameters& params);
 
     bool mShutterPending;
     Mutex mShutterLock;
@@ -382,13 +428,29 @@ private:
     Condition mSnapshotThreadWait;
     friend void *snapshot_thread(void *user);
     void runSnapshotThread(void *data);
+    Mutex mRawPictureHeapLock;
 
     void initDefaultParameters();
+    /* TAG JB 01/21/2010 : Sensor dependant parameters */
+    void filterPictureSizes();
+    void findSensorType();
+    /* End of TAG */
 
-    void setAntibanding();
-    void setEffect();
-    void setWhiteBalance();
-    void setZoom();
+    /* TAG JB 01/21/2010 : Enhancement */    
+    status_t setPreviewSize(const CameraParameters& params);
+    status_t setJpegThumbnailSize(const CameraParameters& params);
+    status_t setPictureSize(const CameraParameters& params);
+    status_t setAntibanding(const CameraParameters& params);
+    status_t setEffect(const CameraParameters& params);
+    status_t setWhiteBalance(const CameraParameters& params);
+    status_t setFlash(const CameraParameters& params);
+    bool isValidDimension(int w, int h);
+    /* End of TAG */
+    
+    /* TAG JB 01/21/2010 : Zoom */
+    void storePreviewFrameForPostview();
+    status_t setZoom(const CameraParameters& params);
+    /* End of TAG */
 
     Mutex mLock;
     bool mReleasedRecordingFrame;
@@ -420,16 +482,16 @@ private:
 
 #if DLOPEN_LIBMMCAMERA
     void *libmmcamera;
-    void *libmmcamera_target;
 #endif
 
     int mCameraControlFd;
+    struct msm_camsensor_info mSensorInfo;
     cam_ctrl_dimension_t mDimension;
     bool mAutoFocusThreadRunning;
     Mutex mAutoFocusThreadLock;
     int mAutoFocusFd;
 
-    pthread_t mCamConfigThread;
+
     pthread_t mFrameThread;
     pthread_t mSnapshotThread;
 
@@ -438,7 +500,10 @@ private:
     struct msm_frame frames[kPreviewBufferCount];
     bool mInPreviewCallback;
     bool mCameraRecording;
-    int32_t mCurZoom;
+
+    /* TAG JB 01/20/2010 : New memory management + mdp zoom */
+    int kPreviewBufferCountActual;
+    /* End of TAG */
 };
 
 }; // namespace android
