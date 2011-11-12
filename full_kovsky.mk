@@ -105,7 +105,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Default network type
 # 0 => WCDMA Preferred.
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.default_network=0
+    ro.telephony.default_network=1
 
 # Disable JIT by default
 PRODUCT_PROPERTY_OVERRIDES += \
