@@ -2343,7 +2343,7 @@ static void requestSetupDataCall(char **data, size_t datalen, RIL_Token t)
 			goto error;
 		/* Return the IP address too */
 		property_get("net.gprs.local-ip", ipbuf, "0.0.0.0");
-		property_get("net.ppp0.local-ip", ipbuf, "0.0.0.0");
+		property_get("net.ppp0.local-ip", ipbuf2, "0.0.0.0");
 		if (strcmp(ipbuf, "0.0.0.0") || strcmp(ipbuf2, "0.0.0.0"))
 			break;
 	}
