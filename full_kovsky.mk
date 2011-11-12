@@ -34,7 +34,7 @@ PRODUCT_PACKAGES += \
 	gralloc.kovsky \
 	lights.msm7k \
 	libhtc_acoustic \
-	libhtcgeneric_ril \
+	libhtcgeneric-ril \
 	libcamera \
 	wl1251.ko \
 	wl1251_sdio.ko
@@ -87,7 +87,7 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.media.dec.vid.wmv.enabled=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    rild.libpath=/system/lib/libhtcgeneric_ril.so \
+    rild.libpath=/system/lib/libhtcgeneric-ril.so \
     wifi.interface=wlan0
 
 # Time between scans in seconds. Keep it high to minimize battery drain.

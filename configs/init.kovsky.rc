@@ -113,3 +113,16 @@ service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
     disabled
     oneshot
     keycodes 158 139
+
+service pppd_gprs /system/bin/pppd /dev/smd7 defaultroute local usepeerdns \
+    noipdefault unit 0 nodetach linkname gprs \
+    lcp-restart 1 lcp-max-configure 3 ipcp-restart 1 ipcp-max-configure 3
+    disabled
+    oneshot
+
+on property:ril.xda.data_ready=true
+    start pppd_gprs
+
+on property:ril.xda.data_ready=false
+    stop pppd_gprs
+
