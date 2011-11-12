@@ -5586,7 +5586,7 @@ const RIL_RadioFunctions *RIL_Init(const struct RIL_Env *env, int argc, char **a
 
 	fd=open("/sys/class/htc_hw/radio", O_RDONLY);
 	read(fd, buffer, 32);
-	if(strncmp(buffer, "GSM",3)==0) {
+	if(strncmp(buffer, "CDMA",4)!=0) {
 		phone_has = MODE_GSM;
 		phone_is = MODE_GSM;
 	} else {
