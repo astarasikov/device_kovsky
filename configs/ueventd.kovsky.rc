@@ -1,1 +1,2 @@
 mtd@misc 0460 radio diag
+/dev/ttyHS1               0600   bluetooth  bluetooth
