@@ -1,0 +1,19 @@
+#!/bin/sh
+case $1 in
+ppp0)
+	;;
+ppp1)
+	echo 0 > /proc/sys/net/ipv4/ip_forward;
+	;;
+esac
+
+# Use yyy of ip-xx-yyy in program name
+LINK=`echo $0 | cut -d- -f3`
+NAME=${LINK:-"$LINKNAME"}
+# Use interface name if linkname is not available
+NAME=${NAME:-"$1"}
+
+/system/bin/setprop "net.$NAME.dns1" "$DNS1"
+/system/bin/setprop "net.$NAME.dns2" "$DNS2" 
+/system/bin/setprop "net.$NAME.local-ip" "$IPLOCAL" 
+/system/bin/setprop "net.$NAME.remote-ip" "$IPREMOTE" 

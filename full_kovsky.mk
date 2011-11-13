@@ -61,6 +61,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/kovsky/configs/init/01kovsky:/system/etc/init.d/01kovsky
 
+# ppp scripts
+PRODUCT_COPY_FILES += \
+    device/htc/kovsky/configs/ppp/ip-up-gprs:/system/etc/ppp/ip-up-gprs \
+    device/htc/kovsky/configs/ppp/ip-down-gprs:/system/etc/ppp/ip-down-gprs
+
 # Keylayout / Headset
 PRODUCT_COPY_FILES += \
     device/htc/kovsky/configs/keylayout/microp-keypad.kl:system/usr/keylayout/microp-keypad.kl \
